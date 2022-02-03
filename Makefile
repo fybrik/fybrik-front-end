@@ -8,5 +8,6 @@ DOCKER_CONTEXT = .
 include $(ROOT_DIR)/hack/make-rules/docker.mk
 
 
-
-
+.PHONY: docker-build
+docker-build:
+	docker build . -t ${IMG} -f Dockerfile
