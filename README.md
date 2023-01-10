@@ -20,8 +20,13 @@ npm install
 export NODE_OPTIONS=--max_old_space_size=4096
 rm -rf build
 npm run build
-make docker-build
 ```
+Build and push the docker image
+```
+make docker-build
+make docker-push
+```
+Before the deployment, the pushed docker image should be publicly available.
 
 ### Deployment
 ```
