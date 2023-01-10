@@ -1,3 +1,47 @@
+## Run with Rest Server
+
+Before running the GUI, we have to deploy the `rest-server` in [fybrik](https://github.com/fybrik/fybrik).
+
+### Frontend image creation
+
+Provide your docker variables
+
+```
+export DOCKER_USERNAME=<USERNAME>
+export DOCKER_TAGNAME=latest
+export DOCKER_HOSTNAME=ghcr.io
+export DOCKER_NAMESPACE=<NAMESPACE>
+export DOCKER_PASSWORD=<PASSWORD>
+```
+Then:
+```
+npm install
+# Ensure that .env has a correct configuration
+export NODE_OPTIONS=--max_old_space_size=4096
+rm -rf build
+npm run build
+```
+Build and push the docker image
+```
+make docker-build
+make docker-push
+```
+Before the deployment, the pushed docker image should be publicly available.
+
+### Deployment
+```
+./deploy.sh
+```
+
+### Run
+kubectl port-forward service/datauserclient 3000:3000&
+
+Open a browser
+
+Connect to localhost:3000
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
